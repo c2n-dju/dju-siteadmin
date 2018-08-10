@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -10,6 +10,8 @@ if platform.node() == "ww2":
     DOMAIN = ".c2n.universite-paris-saclay.fr"
 elif platform.node() == "vps430313":
     DOMAIN = ".c2n.science"
+elif platform.node() == "webc2n2.c2n.u-psud.fr":
+    DOMAIN = ".c2n.universite-paris-saclay.fr"
 else:
     sys.exit(22)
 
@@ -55,8 +57,8 @@ sites = {
 }
 
 s = Site.objects.get(id=1)
-if s.domain != 'edith-cms.c2n.universite-paris-saclay.fr':
-    print(s.domain + ' != edith-cms.c2n.universite-paris-saclay.fr')
+if s.domain != 'edith-cms.c2n.universite-paris-saclay.fr' and s.domain != 'edith-www.c2n.universite-paris-saclay.fr':
+    print(s.domain + ' != edith-cms.c2n.universite-paris-saclay.fr or edith-www.c2n.universite-paris-saclay.fr')
     exit
 s.domain = 'www' + DOMAIN
 s.save()
@@ -65,11 +67,20 @@ s.save()
 if DOMAIN == ".c2n.science":
     for site in range(6,35):
         s = Site.objects.get(id=site)
-        if s.domain != 'edith-' + sites[site] + 'c2n.science':
-            print(s.domain + ' != edith-' + sites[site] + 'c2n.science')
+        if s.domain != 'edith-' + sites[site] + '.c2n.science':
+            print(s.domain + ' != edith-' + sites[site] + '.c2n.science')
             exit
         s.domain = sites[site] + DOMAIN
         s.save()
+if platform.node() == "webc2n2.c2n.u-psud.fr":
+    for site in range(6,35):
+        s = Site.objects.get(id=site)
+        if s.domain != 'edith-' + sites[site] + '.c2n.universite-paris-saclay.fr':
+            print(s.domain + ' != edith-' + sites[site] + '.c2n.universite-paris-saclay.fr')
+            exit
+        s.domain = sites[site] + DOMAIN
+        s.save()
+
 
 
 

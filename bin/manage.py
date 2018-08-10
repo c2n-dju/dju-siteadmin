@@ -37,6 +37,7 @@ ALL_TEAMS = [
     'qcl',
     'qd',
 ]
+VN=1
 if platform.node() == 'vps430313':
     TEST_URL = "http://www-test.c2n.science/fr/"
     TEAMS = [
@@ -74,6 +75,10 @@ if platform.node() == 'vps430313':
 elif platform.node() == 'ww2':
     TEST_URL = "http://www-test.c2n.universite-paris-saclay.fr/fr/"
     TEAMS = ['www',]
+elif platform.node() == 'webc2n2.c2n.u-psud.fr':
+    TEST_URL = "http://phynano.v2.c2n.science/en/"
+    TEAMS = ['phynano',]
+    VN=2
 else:
     print("Nom inconnu : " + platform.node())
     sys.exit(22)
