@@ -205,6 +205,8 @@ class Site:
     def tar_media(self, chemin):
         self.run_in("/bin/tar xvf " + chemin)
 
+    def rsync_media(self, chemin):
+        self.run_in("/usr/bin/rsync -av " + chemin + " .") 
 
     @classmethod
     def get_test_site(cls, TEAMS):
@@ -256,9 +258,31 @@ def start_testsite(TEAMS):
     run_it(["sudo", "/bin/systemctl", "restart",  "nginx"] )
     return testsite
 
+        
+def start_testsiteV2(TEAMS):
+    testsite = Site.get_test_site(TEAMS)
+    if testsite.is_in_test():
+        raise Exception("Cannot start test site, " + testsite.site + " is already in test!!!")
+    testsite.efface_backend()
+    testsite.reload_backend("/home/data/db_edithbackend_latest.sql")
+    testsite.efface_cms()
+    testsite.reload_cms("/home/data/db_edithcms_latest.sql")
+    testsite.rename_sites()
+    testsite.rsync_media("/home/data/media_edithcms/media")
+    testsite.rsync_media("/home/data/media_edithbackend/media")
+    testsite.start()
+    run_it(["sudo", "/bin/ln", "-sf", "/etc/nginx/sites-available/www-test-sur-" + testsite.site, "/etc/nginx/sites-enabled/www-test"])
+    run_it(["sudo", "/bin/systemctl", "restart",  "nginx"] )
+    return testsite
 
-def start_test(TEAMS):
-    testsite = start_testsite(TEAMS)
+
+def start_test(VN, TEAMS):
+    if VN == 1:
+        testsite = start_testsite(TEAMS)
+    elif VN == 2:
+        testsite = start_testsiteV2(TEAMS)
+    else:
+        raise Exception('Bad VN')
     print("OK, please use " + testsite.site + " as test site") 
 
 
@@ -275,16 +299,23 @@ def stop_test(TEAMS):
     testsite.stop()   
 
 
-def swap_site(TEAMS, TEST_URL):
+def swap_site(VN, TEAMS, TEST_URL):
     testsite = Site.get_test_site(TEAMS)
     t = testsite.test_the_site(TEST_URL)
-    if t != 0:
+    if VN == 2:
+        print("No test yet")
+    elif t != 0:
         raise Exception("Bad test site, swap operation is aborted!!!")
     run_it(["sudo", "/bin/ln", "-sf", "/etc/nginx/sites-available/www-sur-" + testsite.site, "/etc/nginx/sites-enabled/www"])
     nginx_stop_www_test()
     testsite.other(TEAMS).stop()
 
 
-def migrate_data(TEAMS, TEST_URL):
-    testsite = start_testsite(TEAMS)
-    swap_site(TEAMS, TEST_URL)
+def migrate_data(VN, TEAMS, TEST_URL):
+    if VN == 1:
+        testsite = start_testsite(TEAMS)
+    elif VN == 2:
+        testsite = start_testsiteV2(TEAMS)
+    else:
+        raise Exception("Bad VN")
+    swap_site(VN, TEAMS, TEST_URL)
