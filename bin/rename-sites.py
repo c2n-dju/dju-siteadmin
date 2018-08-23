@@ -54,6 +54,12 @@ sites = {
     32: 'elabmat',
     33: 'anamat',
     34: 'heterna',
+    35: 'sunlit',
+    36: 'odin',
+    37: 'test01',
+    38: 'test02',
+    39: 'test03',
+    40: 'qpc',
 }
 
 s = Site.objects.get(id=1)

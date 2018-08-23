@@ -40,7 +40,9 @@ ALL_TEAMS = [
     'phynano',
     'qcl',
     'qd',
+    'qpc',
 ]
+
 
 if platform.node() == 'vps430313':
     TEST_URL = "http://www-test.c2n.science/fr/"
@@ -81,7 +83,7 @@ elif platform.node() == 'ww2':
     TEAMS = ['www',]
 elif platform.node() == 'webc2n2.c2n.u-psud.fr':
     TEST_URL = "http://phynano.v2.c2n.science/en/"
-    TEAMS = ['mat2d', 'phynano',]
+    TEAMS = ['mat2d', 'phynano', 'qpc',]
     VN=2
 else:
     print("Nom inconnu : " + platform.node())
