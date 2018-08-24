@@ -195,6 +195,7 @@ class Site:
 
 
     def rename_sites(self):
+        print('--- rename_sites')
         self.run_with_env("/home/siteadmin/dju-siteadmin/bin/rename-sites.py")
         
 
@@ -260,6 +261,7 @@ def start_testsite(TEAMS):
 
         
 def start_testsiteV2(TEAMS):
+    print('--- start_testsiteV2 ' + str(TEAMS))
     testsite = Site.get_test_site(TEAMS)
     if testsite.is_in_test():
         raise Exception("Cannot start test site, " + testsite.site + " is already in test!!!")
@@ -312,6 +314,7 @@ def swap_site(VN, TEAMS, TEST_URL):
 
 
 def migrate_data(VN, TEAMS, TEST_URL):
+    print('--- migrate_data, VN = ' + str(VN))
     if VN == 1:
         testsite = start_testsite(TEAMS)
     elif VN == 2:

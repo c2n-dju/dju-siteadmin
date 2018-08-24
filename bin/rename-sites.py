@@ -70,8 +70,10 @@ s.domain = 'www' + DOMAIN
 s.save()
 
 # code bricolé !
+lasti = sorted(sites.keys())[-1]
+print('--- NOW renaming until ' + str(lasti))
 if DOMAIN == ".c2n.science":
-    for site in range(6,35):
+    for site in range(6,lastii+1):
         s = Site.objects.get(id=site)
         if s.domain != 'edith-' + sites[site] + '.c2n.science':
             print(s.domain + ' != edith-' + sites[site] + '.c2n.science')
@@ -79,16 +81,12 @@ if DOMAIN == ".c2n.science":
         s.domain = sites[site] + DOMAIN
         s.save()
 if platform.node() == "webc2n2.c2n.u-psud.fr":
-    for site in range(6,35):
+    print('platform.node() == "webc2n2.c2n.u-psud.fr"')
+    for site in range(6,lasti+1):
         s = Site.objects.get(id=site)
         if s.domain != 'edith-' + sites[site] + '.c2n.universite-paris-saclay.fr':
             print(s.domain + ' != edith-' + sites[site] + '.c2n.universite-paris-saclay.fr')
             exit
         s.domain = sites[site] + DOMAIN
+        print(s.domain)
         s.save()
-
-
-
-
-
-
