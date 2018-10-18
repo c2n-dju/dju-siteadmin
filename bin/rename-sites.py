@@ -42,7 +42,7 @@ sites = {
     20: 'minaphot',
     21: 'mnoems',
     22: 'integnano',
-    23: 'nanophotoniq',
+    23: 'toniq',
     24: 'nanophotonit',
     25: 'nanotech',
     26: 'nomade',
