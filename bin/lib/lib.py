@@ -5,8 +5,8 @@ import platform
 
 
 def run_it(command, printresult=True):
-    if printresult:
-        print(" ".join(command))
+    # if printresult:
+    print(" ".join(command))
     p = subprocess.run(command, stdout=subprocess.PIPE)
     r = (p.returncode, p.stdout.decode("ascii").strip("\n"))
     if printresult and r[0] != 0 and r[1] != '':
@@ -21,6 +21,8 @@ class Systemctl:
 
 
     def issomething(self, what):
+        print("issomething " + what)
+        print("procname = " + self.procname)
         return run_it(["/bin/systemctl", what, self.procname], printresult=False)
 
 
@@ -123,6 +125,7 @@ class UwsgiProcesses():
 
     def oneactive(self):
         for p in self.processes:
+            print(str(p.site))
             if p.isactive():
                 return True
         return False
@@ -263,6 +266,7 @@ def start_testsite(TEAMS):
 def start_testsiteV2(TEAMS):
     print('--- start_testsiteV2 ' + str(TEAMS))
     testsite = Site.get_test_site(TEAMS)
+    print('testsite = ' + str(testsite))
     if testsite.is_in_test():
         raise Exception("Cannot start test site, " + testsite.site + " is already in test!!!")
     testsite.efface_backend()
