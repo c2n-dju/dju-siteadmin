@@ -25,6 +25,7 @@ django.setup()
 from django.contrib.sites.models import Site
 
 sites = {
+    1: 'www',
     6: 'minao',
     7: 'cimphonie',
     8: 'crime',
@@ -82,7 +83,7 @@ if DOMAIN == ".c2n.science":
         s.save()
 if platform.node() == "webc2n2.c2n.u-psud.fr":
     print('platform.node() == "webc2n2.c2n.u-psud.fr"')
-    for site in range(6,lasti+1):
+    for site in [1] + list(range(6,lasti+1)):
         s = Site.objects.get(id=site)
         if s.domain != 'edith-' + sites[site] + '.c2n.universite-paris-saclay.fr':
             print(s.domain + ' != edith-' + sites[site] + '.c2n.universite-paris-saclay.fr')
@@ -90,3 +91,4 @@ if platform.node() == "webc2n2.c2n.u-psud.fr":
         s.domain = sites[site] + DOMAIN
         print(s.domain)
         s.save()
+    
