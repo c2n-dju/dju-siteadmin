@@ -82,7 +82,7 @@ elif platform.node() == 'ww2':
     TEST_URL = "http://www-test.c2n.universite-paris-saclay.fr/fr/"
     TEAMS = ['www',]
 elif platform.node() == 'webc2n2.c2n.u-psud.fr':
-    TEST_URL = "http://phynano.v2.c2n.science/en/"
+    TEST_URL = "http://www.v2.c2n.science/en/"
     TEAMS = ['www', 'biosys', 'elphyse', 'mat2d', 'odin', 'phynano', 'qpc', 'toniq',]
     VN=2
 else:
