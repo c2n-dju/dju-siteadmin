@@ -8,7 +8,7 @@ def run_it(command, printresult=True):
     # if printresult:
     print(" ".join(command))
     p = subprocess.run(command, stdout=subprocess.PIPE)
-    r = (p.returncode, p.stdout.decode("ascii").strip("\n"))
+    r = (p.returncode, p.stdout.decode('ascii', 'backslashreplace').strip('\n'))
     if printresult and r[0] != 0 and r[1] != '':
         print(r)
     return r
