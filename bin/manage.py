@@ -10,7 +10,6 @@ from lib.lib import *
 VN = 1
 
 ALL_TEAMS = [
-    'www',
     'anamat',
     'biosys',
     'cimphonie',
@@ -25,63 +24,37 @@ ALL_TEAMS = [
     'goss',
     'heterna',
     'instrum',
+    'integnano',
     'mat2d',
-    'micromed',
+    'mimed',
     'minao',
     'minaphot',
     'mnoems',
-    'integnano',
-    'nanophotoniq',
     'nanophotonit',
-    'nanotech',
     'nomade',
+    'odin',
     'oxide',
+    'panam',
     'phodev',
     'phynano',
+    'piment',
+    'poem',
     'qcl',
     'qd',
     'qpc',
+    'sunlit',
+    'test01',
+    'test02',
+    'test03',
+    'toniq',
+    'www',
 ]
 
 
-if platform.node() == 'vps430313':
-    TEST_URL = "http://www-test.c2n.science/fr/"
-    TEAMS = [
-        'www',
-        'anamat',
-        'biosys',
-        'cimphonie',
-        'comics',
-        'crime',
-        'dynanets',
-        'elabmat',
-        'elphyse',
-        'ephycas',
-        'epla',
-        'experfo',
-        'goss',
-        'heterna',
-        'instrum',
-        'mat2d',
-        'micromed',
-        'minao',
-        'minaphot',
-        'mnoems',
-        'integnano',
-        'toniq',
-        'nanophotonit',
-        'nanotech',
-        'nomade',
-        'oxide',
-        'phodev',
-        'phynano',
-        'qcl',
-        'qd',
-    ]
-elif platform.node() == 'ww2':
-    TEST_URL = "http://www-test.c2n.universite-paris-saclay.fr/fr/"
+if platform.node() == 'ww2':
+    TEST_URL = "http://www-test.c2n.u-psud.fr/fr/"
     TEAMS = ['www',]
-elif platform.node() == 'webc2n2.c2n.universite-paris-saclay.fr':
+elif platform.node() == 'webc2n2.c2n.u-psud.fr':
     TEST_URL = "http://www.v2.c2n.science/en/"
     TEAMS = ['www', 'biosys', 'elphyse', 'goss', 'mat2d', 'minaphot', 'odin', 'phynano', 'qpc', 'toniq',]
     VN=2
