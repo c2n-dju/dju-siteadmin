@@ -61,6 +61,7 @@ sites = {
     38: 'test02',
     39: 'test03',
     40: 'qpc',
+    41: 'noe',
 }
 
 s = Site.objects.get(id=1)

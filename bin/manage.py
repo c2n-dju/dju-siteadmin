@@ -31,6 +31,7 @@ ALL_TEAMS = [
     'minaphot',
     'mnoems',
     'nanophotonit',
+    'noe',
     'nomade',
     'odin',
     'oxide',
@@ -56,7 +57,28 @@ if platform.node() == 'ww2':
     TEAMS = ['www',]
 elif platform.node() == 'webc2n2.c2n.u-psud.fr':
     TEST_URL = "http://www.v2.c2n.science/en/"
-    TEAMS = ['www', 'biosys', 'elphyse', 'epla', 'goss', 'heterna', 'mat2d', 'minaphot', 'odin', 'oxide', 'panam', 'phynano', 'poem', 'qpc', 'toniq',]
+    TEAMS = ['www',
+            'biosys',
+            'cimphonie',
+            'crime',
+            'elphyse',
+            'epla',
+            'goss',
+            'heterna',
+            'mat2d',
+            'mimed',
+            'minaphot',
+            'mnoems',
+            'noe',
+            'odin',
+            'oxide',
+            'panam',
+            'phynano',
+            'piment',
+            'poem',
+            'qpc',
+            'toniq',
+            ]
     VN=2
 else:
     print("Nom inconnu : " + platform.node())
