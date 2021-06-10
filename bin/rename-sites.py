@@ -54,7 +54,7 @@ sites = {
     31: 'qd',
     32: 'poem',
     33: 'panam',
-    34: 'heterna',
+    34: 'seeds',
     35: 'sunlit',
     36: 'odin',
     37: 'test01',
